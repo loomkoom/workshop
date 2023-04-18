@@ -13,7 +13,6 @@ Next, navigate to your app's General Overview page, then copy the App ID and Pub
 {
     "prefix": "BOT_PREFIX",
     "token": "BOT_TOKEN",
-    "permissions": "BOT_PERMISSIONS",
     "application_id": "APPLICATION_ID",
     "public_key": "PUBLIC_KEY"
 }
