@@ -3,7 +3,7 @@ output: .retype
 url: loomkoom.github.io/workshop
 
 branding:
-  title: Python bot workshop
+  title: Workshop
   label: Docs
 
 # branding:
