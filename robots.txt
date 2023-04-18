@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://loomkoom.github.io/workshop/sitemap.xml.gz
