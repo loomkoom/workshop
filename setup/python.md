@@ -20,7 +20,7 @@ Below is an overview of the main folders and files:
 ```
 
 
-Install the required libraries, including Discord.py and python-dotenv, by running the following command in the command prompt:
+Install the required libraries, including Discord.py, by running the following command in the command prompt:
 
 `python3 -m pip install requirements.txt`
 

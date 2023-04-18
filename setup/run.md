@@ -11,11 +11,11 @@ First, copy your bot user's token from earlier and paste it in the `prefix` fiel
 Next, navigate to your app's General Overview page, then copy the App ID and Public Key. Paste the values into the file as `application_id` and `public_key`.
 ```json
 {
-    "prefix": "YOUR_BOT_PREFIX_HERE",
-    "token": "YOUR_BOT_TOKEN_HERE",
-    "permissions": "YOUR_BOT_PERMISSIONS_HERE",
-    "application_id": "YOUR_APPLICATION_ID_HERE",
-    "public_key": "YOUR_PUBLIC_KEY_HERE"
+    "prefix": "BOT_PREFIX",
+    "token": "BOT_TOKEN",
+    "permissions": "BOT_PERMISSIONS",
+    "application_id": "APPLICATION_ID",
+    "public_key": "PUBLIC_KEY"
 }
 ```
 
