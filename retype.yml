@@ -14,20 +14,17 @@ branding:
 meta:
   title: " - Create discord bots"
 
-edit:
-  repo: github.com/loomkoom/docs
-
 editor:
   enabled: false
 
 links:
   - text: Setup
-    link: /setup.md
+    link: /setup
     icon: home
 
   - text: Resources
-    link: /pro
-    icon: star
+    link: /resources
+    icon: repo
 
   - text: Issues 
     link: https://discord.gg//
