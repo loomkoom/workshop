@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/workshop">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735143540781">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735143823647">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -36,12 +36,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.735143540781" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.735143823647" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735143540781" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735143823647" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735143540781" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735143540781" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735143823647" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735143823647" defer></script>
 
     <!-- Add content to _includes/head.html to include here -->
 </head>
@@ -406,7 +406,16 @@ const msg = &quot;Set a code block title&quot;;
 <doc-tab id="demo">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.5 15.584V8.416a.5.5 0 01.77-.42l5.576 3.583a.5.5 0 010 .842l-5.576 3.584a.5.5 0 01-.77-.42z"/><path fill-rule="evenodd" d="M12 2.5a9.5 9.5 0 100 19 9.5 9.5 0 000-19zM1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12z"/></g></g></svg> Demo</template>
 <div class="codeblock-wrapper"><doc-codeblock line-numbers>
-<pre class="language-javascript" data-line="2"><code v-pre class="language-javascript">[UNRESOLVED PARTIAL]</code></pre>
+<pre class="language-javascript" data-line="2"><code v-pre class="language-javascript">export function calculateOffset(): number {
+    const siteHeaderEl = document.getElementById(&quot;docs-site-header&quot;);
+    const toolbarEl = document.getElementById(&quot;docs-toolbar&quot;);
+
+    let offset = 20; // 20 is extra offset added before the focused element
+    offset += siteHeaderEl ? siteHeaderEl.offsetHeight : 0;
+    offset += toolbarEl ? toolbarEl.offsetHeight : 0;
+
+    return -offset;
+}</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
@@ -429,7 +438,16 @@ const msg = &quot;Set a code block title&quot;;
 <doc-tab id="demo">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.5 15.584V8.416a.5.5 0 01.77-.42l5.576 3.583a.5.5 0 010 .842l-5.576 3.584a.5.5 0 01-.77-.42z"/><path fill-rule="evenodd" d="M12 2.5a9.5 9.5 0 100 19 9.5 9.5 0 000-19zM1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12z"/></g></g></svg> Demo</template>
 <div class="codeblock-wrapper"><doc-codeblock line-numbers>
-<pre class="language-javascript" data-line="2-5"><code v-pre class="language-javascript">[UNRESOLVED PARTIAL]</code></pre>
+<pre class="language-javascript" data-line="2-5"><code v-pre class="language-javascript">export function calculateOffset(): number {
+    const siteHeaderEl = document.getElementById(&quot;docs-site-header&quot;);
+    const toolbarEl = document.getElementById(&quot;docs-toolbar&quot;);
+
+    let offset = 20; // 20 is extra offset added before the focused element
+    offset += siteHeaderEl ? siteHeaderEl.offsetHeight : 0;
+    offset += toolbarEl ? toolbarEl.offsetHeight : 0;
+
+    return -offset;
+}</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
@@ -452,7 +470,16 @@ const msg = &quot;Set a code block title&quot;;
 <doc-tab id="demo">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.5 15.584V8.416a.5.5 0 01.77-.42l5.576 3.583a.5.5 0 010 .842l-5.576 3.584a.5.5 0 01-.77-.42z"/><path fill-rule="evenodd" d="M12 2.5a9.5 9.5 0 100 19 9.5 9.5 0 000-19zM1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12z"/></g></g></svg> Demo</template>
 <div class="codeblock-wrapper"><doc-codeblock line-numbers>
-<pre class="language-javascript" data-line="1-2,4-8"><code v-pre class="language-javascript">[UNRESOLVED PARTIAL]</code></pre>
+<pre class="language-javascript" data-line="1-2,4-8"><code v-pre class="language-javascript">export function calculateOffset(): number {
+    const siteHeaderEl = document.getElementById(&quot;docs-site-header&quot;);
+    const toolbarEl = document.getElementById(&quot;docs-toolbar&quot;);
+
+    let offset = 20; // 20 is extra offset added before the focused element
+    offset += siteHeaderEl ? siteHeaderEl.offsetHeight : 0;
+    offset += toolbarEl ? toolbarEl.offsetHeight : 0;
+
+    return -offset;
+}</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
@@ -475,7 +502,16 @@ const msg = &quot;Set a code block title&quot;;
 <doc-tab id="demo">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.5 15.584V8.416a.5.5 0 01.77-.42l5.576 3.583a.5.5 0 010 .842l-5.576 3.584a.5.5 0 01-.77-.42z"/><path fill-rule="evenodd" d="M12 2.5a9.5 9.5 0 100 19 9.5 9.5 0 000-19zM1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12z"/></g></g></svg> Demo</template>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript" data-line="2,4-8"><code v-pre class="language-javascript">[UNRESOLVED PARTIAL]</code></pre>
+<pre class="language-javascript" data-line="2,4-8"><code v-pre class="language-javascript">export function calculateOffset(): number {
+    const siteHeaderEl = document.getElementById(&quot;docs-site-header&quot;);
+    const toolbarEl = document.getElementById(&quot;docs-toolbar&quot;);
+
+    let offset = 20; // 20 is extra offset added before the focused element
+    offset += siteHeaderEl ? siteHeaderEl.offsetHeight : 0;
+    offset += toolbarEl ? toolbarEl.offsetHeight : 0;
+
+    return -offset;
+}</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
@@ -498,7 +534,16 @@ const msg = &quot;Set a code block title&quot;;
 <doc-tab id="demo">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.5 15.584V8.416a.5.5 0 01.77-.42l5.576 3.583a.5.5 0 010 .842l-5.576 3.584a.5.5 0 01-.77-.42z"/><path fill-rule="evenodd" d="M12 2.5a9.5 9.5 0 100 19 9.5 9.5 0 000-19zM1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12z"/></g></g></svg> Demo</template>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript" data-line="1-2,4-8"><code v-pre class="language-javascript">[UNRESOLVED PARTIAL]</code></pre>
+<pre class="language-javascript" data-line="1-2,4-8"><code v-pre class="language-javascript">export function calculateOffset(): number {
+    const siteHeaderEl = document.getElementById(&quot;docs-site-header&quot;);
+    const toolbarEl = document.getElementById(&quot;docs-toolbar&quot;);
+
+    let offset = 20; // 20 is extra offset added before the focused element
+    offset += siteHeaderEl ? siteHeaderEl.offsetHeight : 0;
+    offset += toolbarEl ? toolbarEl.offsetHeight : 0;
+
+    return -offset;
+}</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
