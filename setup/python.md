@@ -7,7 +7,7 @@ order: 100
 
 # Dev environment
 
-clone the following github repo: [github.com/loomkoom/bot-template](https://github.com/loomkoom/bot-template)
+Clone the following github repo: [github.com/loomkoom/bot-template](https://github.com/loomkoom/bot-template)
 
 Below is an overview of the main folders and files:
 ```
