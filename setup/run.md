@@ -22,3 +22,6 @@ Next, navigate to your app's General Overview page, then copy the App ID and Pub
 You can now run the bot using your IDE or CLI interface like you would run any other python program.
 
 `python bot.py`
+
+## Send your invite link
+Please send us your bot invite link in the following discord channel so we can already invite your bot: [#⁠invite-links](https://discord.com/channels/1097857983024746518/1098173576911261787)
