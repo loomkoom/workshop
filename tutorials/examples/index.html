@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/workshop">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735830221767">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735830843975">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.735830221767" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.735830843975" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735830221767" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735830843975" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735830221767" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735830221767" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735830843975" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735830843975" defer></script>
 
     <!-- Add content to _includes/head.html to include here -->
 </head>
@@ -341,6 +341,60 @@ async def serverinfo(interaction: discord.Interaction) -&gt; None:
     embed.add_field(name=f&quot;Roles ({len(interaction.guild.roles)})&quot;, value=roles)
     embed.set_footer(text=f&quot;Created at: {interaction.guild.created_at}&quot;)
     await interaction.response.send_message(embed=embed)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="giveaway-command">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#giveaway-command">#</doc-anchor-trigger>
+        <span>giveaway command</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-python"><code v-pre class="language-python">@bot.hybrid_command(name=&quot;giveaway&quot;, description=&quot;Host a giveaway.&quot;)
+async def giveaway(
+        ctx,
+        channel: discord.TextChannel,
+        duration: int,
+        *, prize: str,
+    ):
+    # Sends a message to let the host know that the giveaway was started properly
+    await ctx.send(
+        f'The giveaway for {prize} will begin shortly.\nPlease direct your attention to {channel.mention}, this giveaway will end in {duration} seconds.')
+
+    # Giveaway embed message
+    embed = discord.Embed(color=0x2ecc71)
+    embed.set_author(name=f'GIVEAWAY TIME!', icon_url='https://i.imgur.com/VaX0pfM.png')
+    embed.add_field(name=f'{ctx.author.name} is giving away: {prize}!',
+                   value=f'React with 🎉 to enter!\n Ends in {round(duration / 60, 2)} minutes!', inline=False)
+    end = datetime.datetime.utcnow() + datetime.timedelta(seconds=duration)
+    embed.set_footer(text=f'Giveaway ends at {end.strftime(&quot;%m/%d/%Y, %H:%M&quot;)} UTC!')
+    my_message = await channel.send(embed=embed)
+
+    # Reacts to the message
+    await my_message.add_reaction(&quot;🎉&quot;)
+    await asyncio.sleep(duration)
+
+    new_message = await channel.fetch_message(my_message.id)
+
+    # Picks a winner
+    users = list()
+    async for user in new_message.reactions[0].users():
+        if not user.bot:
+            users.append(user)
+
+    if len(users) == 0:
+        await channel.send(&quot;No participants entered! No-one won!&quot;)
+        return
+    
+    winner = random.choice(users)
+
+    # Announces the winner
+    winning_announcement = discord.Embed(color=0xff2424)
+    winning_announcement.set_author(name=f'THE GIVEAWAY HAS ENDED!', icon_url='https://i.imgur.com/DDric14.png')
+    winning_announcement.add_field(name=f'🎉 Prize: {prize}',
+                                   value=f'🥳 **Winner**: {winner.mention}\n 🎫 **Number of Entrants**: {len(users)}',
+                                   inline=False)
+    winning_announcement.set_footer(text='Thanks for entering!')
+    await channel.send(embed=winning_announcement)</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="button-selectmenu-dropdown">
     <h2>
