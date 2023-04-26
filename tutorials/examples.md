@@ -56,6 +56,7 @@ async def send_message(interaction: discord.Interaction, channel: discord.TextCh
  Embeds are a way to display your messages in a nice way.
  You make a discord.embed Object and can set the various fields, these can be found in the docs: 
 [https://discordpy.readthedocs.io/en/latest/api.html#discord.Embed](https://discordpy.readthedocs.io/en/latest/api.html#discord.Embed)
+
 ```py
 @bot.tree.command(name="serverinfo", description="Get some useful (or not) information about the server.")
 async def serverinfo(interaction: discord.Interaction) -> None:
@@ -78,6 +79,56 @@ async def serverinfo(interaction: discord.Interaction) -> None:
     embed.add_field(name=f"Roles ({len(interaction.guild.roles)})", value=roles)
     embed.set_footer(text=f"Created at: {interaction.guild.created_at}")
     await interaction.response.send_message(embed=embed)
+```
+
+### giveaway command
+```py
+@bot.hybrid_command(name="giveaway", description="Host a giveaway.")
+async def giveaway(
+        ctx,
+        channel: discord.TextChannel,
+        duration: int,
+        *, prize: str,
+    ):
+    # Sends a message to let the host know that the giveaway was started properly
+    await ctx.send(
+        f'The giveaway for {prize} will begin shortly.\nPlease direct your attention to {channel.mention}, this giveaway will end in {duration} seconds.')
+
+    # Giveaway embed message
+    embed = discord.Embed(color=0x2ecc71)
+    embed.set_author(name=f'GIVEAWAY TIME!', icon_url='https://i.imgur.com/VaX0pfM.png')
+    embed.add_field(name=f'{ctx.author.name} is giving away: {prize}!',
+                   value=f'React with 🎉 to enter!\n Ends in {round(duration / 60, 2)} minutes!', inline=False)
+    end = datetime.datetime.utcnow() + datetime.timedelta(seconds=duration)
+    embed.set_footer(text=f'Giveaway ends at {end.strftime("%m/%d/%Y, %H:%M")} UTC!')
+    my_message = await channel.send(embed=embed)
+
+    # Reacts to the message
+    await my_message.add_reaction("🎉")
+    await asyncio.sleep(duration)
+
+    new_message = await channel.fetch_message(my_message.id)
+
+    # Picks a winner
+    users = list()
+    async for user in new_message.reactions[0].users():
+        if not user.bot:
+            users.append(user)
+
+    if len(users) == 0:
+        await channel.send("No participants entered! No-one won!")
+        return
+    
+    winner = random.choice(users)
+
+    # Announces the winner
+    winning_announcement = discord.Embed(color=0xff2424)
+    winning_announcement.set_author(name=f'THE GIVEAWAY HAS ENDED!', icon_url='https://i.imgur.com/DDric14.png')
+    winning_announcement.add_field(name=f'🎉 Prize: {prize}',
+                                   value=f'🥳 **Winner**: {winner.mention}\n 🎫 **Number of Entrants**: {len(users)}',
+                                   inline=False)
+    winning_announcement.set_footer(text='Thanks for entering!')
+    await channel.send(embed=winning_announcement)
 ```
     
 ## Button, SelectMenu (Dropdown)
