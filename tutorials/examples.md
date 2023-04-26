@@ -52,7 +52,7 @@ async def send_message(interaction: discord.Interaction, channel: discord.TextCh
     await interaction.response.send_message("Message sent!")
 ```
 
- ## Embeds
+## Embeds
  Embeds are a way to display your messages in a nice way.
  You make a discord.embed Object and can set the various fields, these can be found in the docs: 
 [https://discordpy.readthedocs.io/en/latest/api.html#discord.Embed](https://discordpy.readthedocs.io/en/latest/api.html#discord.Embed)
@@ -80,17 +80,60 @@ async def serverinfo(interaction: discord.Interaction) -> None:
     await interaction.response.send_message(embed=embed)
 ```
     
- ## Button, SelectMenu (Dropdown)
-    Voorbeeld dropdown & selectMenu
-    
- ## Webrequests
-    Voorbeelden webrequests
+## Button, SelectMenu (Dropdown)
+### Button
+There are 2 ways to create working buttons, either by setting the callback or creating a separate class. the class-based approach is what you will find in docs and tutorials so that's what we advise.
+### method A
+```py
+class RoleButtons(ui.View):
+    @ui.button(label="Click me", emoji="\U0001f590", style=discord.ButtonStyle.blurple)
+    async def interaction(self, interaction: discord.Interaction, button: discord.Button):
+        await interaction.response.send_message(f"{interaction.user} clicked the button")
 
-    ```py
-    @bot.tree.command()
-async def bitcoin(interaction : discord.Interaction):
+
+@bot.tree.command(name="button", description="My first button Command")
+async def button2(interaction: discord.Interaction):
+    view = RoleButtons()
+    await interaction.response.send_message("Click button", view=view)
+```
+### method B
+```py
+@bot.tree.command(name="button", description="My first button")
+async def button(interaction: discord.Interaction):
+    button = discord.ui.Button(style=discord.ButtonStyle.primary, label="Add a user")
+
+    async def button_callback(i: discord.Interaction):
+        await i.response.send_message(f"User added {i.user}", ephemeral=True)
+
+    button.callback = button_callback
+    buttons_view = discord.ui.View()
+    buttons_view.add_item(button)
+    await interaction.response.send_message("Add a user by clicking the button", view=buttons_view)
+```
+
+### Select
+```py
+class RoleSelect(ui.View):
+    @ui.select(options=[discord.SelectOption(label="Option 1", value="1"),
+                        discord.SelectOption(label="Option 2", value="2"),
+                        discord.SelectOption(label="Option 3", value="3")])
+    async def interaction(self, interaction: discord.Interaction, select):
+        await interaction.response.send_message(f"You clicked the button {select.values}")
+
+
+@bot.command()
+async def select(ctx):
+    view = RoleSelect()
+    await ctx.send("choose option", view=view)
+```
+    
+## Webrequests
+### current BTC price
+```py
+@bot.tree.command()
+    async def bitcoin(interaction : discord.Interaction):
     url = 'https://api.coindesk.com/v1/bpi/currentprice/BTC.json'
     response = requests.get(url)
     data = response.json()
     await interaction.response.send_message("Bitcoin price is: $" + data['bpi']['USD']['rate'])
-        ```
+```
