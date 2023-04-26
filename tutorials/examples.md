@@ -1,3 +1,6 @@
+---
+order: 50
+--- 
  ##   Prefix Command: 
         Hello (ctx.author / ctx.message / ctx.channel / ctx.guild)
  ##    Slash Commands:

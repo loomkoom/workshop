@@ -1,3 +1,7 @@
+---
+order: 10
+visibility: hidden
+---
 # API
 ==- What are Discord's APIs?
 Discord has two APIs that you can mix-and-match to build apps:
