@@ -12,24 +12,21 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>Running your app - Create discord bots</title>
-    <meta name="title" content="Running your app - Create discord bots">
-    <meta name="description" content="There's already some code in your bot.py file, but you'll need your app's token and ID to make requests." />
+    <title>Event driven - Create discord bots</title>
+    <meta name="title" content="Event driven - Create discord bots">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://loomkoom.github.io/workshop/setup/run/" />
+    <link rel="canonical" href="https://loomkoom.github.io/workshop/tutorials/event_driven/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://loomkoom.github.io/workshop/setup/run/">
-    <meta property="og:title" content="Running your app - Create discord bots">
-    <meta property="og:description" content="There's already some code in your bot.py file, but you'll need your app's token and ID to make requests.">
+    <meta property="og:url" content="https://loomkoom.github.io/workshop/tutorials/event_driven/">
+    <meta property="og:title" content="Event driven - Create discord bots">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://loomkoom.github.io/workshop/setup/run/">
-    <meta property="twitter:title" content="Running your app - Create discord bots">
-    <meta property="twitter:description" content="There's already some code in your bot.py file, but you'll need your app's token and ID to make requests.">
+    <meta property="twitter:url" content="https://loomkoom.github.io/workshop/tutorials/event_driven/">
+    <meta property="twitter:title" content="Event driven - Create discord bots">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -39,7 +36,6 @@
     <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735816182291" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
     <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735816182291" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735816182291" defer></script>
 
     <!-- Add content to _includes/head.html to include here -->
 </head>
@@ -230,44 +226,12 @@
                 
                                 <!-- Page content  -->
 <!-- Add content to _includes/top.md to include here -->
-<doc-anchor-target id="running-your-app" class="break-words">
+<doc-anchor-target id="event-driven" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#running-your-app">#</doc-anchor-trigger>
-        <span>Running your app</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#event-driven">#</doc-anchor-trigger>
+        <span>Event driven</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="adding-credentials">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-credentials">#</doc-anchor-trigger>
-        <span>Adding credentials</span>
-    </h2>
-</doc-anchor-target>
-<p>There&#x27;s already some code in your <code v-pre>bot.py</code> file, but you&#x27;ll need your app&#x27;s token and ID to make requests. All of your credentials can be stored directly in the <code v-pre>config.json</code> file.</p>
-<p>First, copy your bot user&#x27;s token from earlier and paste it in the <code v-pre>token</code> field.</p>
-<p>Next, navigate to your app&#x27;s General Overview page, then copy the App ID and Public Key. Paste the values into the file as <code v-pre>application_id</code> and <code v-pre>public_key</code>.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-json"><code v-pre class="language-json">{
-    &quot;prefix&quot;: &quot;BOT_PREFIX&quot;,
-    &quot;token&quot;: &quot;BOT_TOKEN&quot;,
-    &quot;application_id&quot;: &quot;APPLICATION_ID&quot;,
-    &quot;public_key&quot;: &quot;PUBLIC_KEY&quot;
-}</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="running-bot">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#running-bot">#</doc-anchor-trigger>
-        <span>Running bot</span>
-    </h2>
-</doc-anchor-target>
-<p>You can now run the bot using your IDE or CLI interface like you would run any other python program.</p>
-<p><code v-pre>python bot.py</code></p>
-<doc-anchor-target id="send-your-invite-link">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#send-your-invite-link">#</doc-anchor-trigger>
-        <span>Send your invite link</span>
-    </h2>
-</doc-anchor-target>
-<p>Please send us your bot invite link in the following discord channel so we can already invite your bot: <a href="https://discord.com/channels/1097857983024746518/1098173576911261787">#⁠invite-links</a></p>
 <!-- Add content to _includes/bottom.md to include here -->
 
                                 
@@ -276,27 +240,6 @@
                             </div>
                             <footer class="clear-both">
                             
-                                <nav class="flex mt-14">
-                                    <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../setup/python/">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                            <span>
-                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Python environment</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                            
-                                    <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../exercises/">
-                                            <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Part 1</span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                        </a>
-                                    </div>
-                                </nav>
                             </footer>
                         </main>
                 
@@ -345,7 +288,7 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Running your app", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Event driven", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 
     <!-- Add content to _includes/body.html to include here -->
 </body>
