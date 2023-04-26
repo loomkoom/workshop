@@ -12,26 +12,21 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>Setting up your discord bot - Create discord bots</title>
-    <meta name="title" content="Setting up your discord bot - Create discord bots">
-    <meta name="description" content="First, you'll need to create an app in the developer portal if you don't have one already:" />
+    <title>Buttons - Create discord bots</title>
+    <meta name="title" content="Buttons - Create discord bots">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://loomkoom.github.io/workshop/setup/account/" />
+    <link rel="canonical" href="https://loomkoom.github.io/workshop/tutorials/buttons/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://loomkoom.github.io/workshop/setup/account/">
-    <meta property="og:title" content="Setting up your discord bot - Create discord bots">
-    <meta property="og:description" content="First, you'll need to create an app in the developer portal if you don't have one already:">
-    <meta property="og:image" content="https://loomkoom.github.io/workshop/static/bot-tabs.png">
+    <meta property="og:url" content="https://loomkoom.github.io/workshop/tutorials/buttons/">
+    <meta property="og:title" content="Buttons - Create discord bots">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://loomkoom.github.io/workshop/setup/account/">
-    <meta property="twitter:title" content="Setting up your discord bot - Create discord bots">
-    <meta property="twitter:description" content="First, you'll need to create an app in the developer portal if you don't have one already:">
-    <meta property="twitter:image" content="https://loomkoom.github.io/workshop/static/bot-tabs.png">
+    <meta property="twitter:url" content="https://loomkoom.github.io/workshop/tutorials/buttons/">
+    <meta property="twitter:title" content="Buttons - Create discord bots">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -231,140 +226,12 @@
                 
                                 <!-- Page content  -->
 <!-- Add content to _includes/top.md to include here -->
-<!-- ![](/static/headers/header-1.png) -->
-<doc-anchor-target id="setting-up-your-discord-bot" class="break-words">
+<doc-anchor-target id="buttons" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#setting-up-your-discord-bot">#</doc-anchor-trigger>
-        <span>Setting up your discord bot</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#buttons">#</doc-anchor-trigger>
+        <span>Buttons</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="creating-an-app">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-an-app">#</doc-anchor-trigger>
-        <span>Creating an app</span>
-    </h2>
-</doc-anchor-target>
-<p>First, you&#x27;ll need to create an app in the developer portal if you don&#x27;t have one already:</p>
-<p><a href="https://discord.com/developers/applications?new_application=true" class="no-link inline-flex items-center font-medium cursor-pointer transition-colors duration-200 ease-out focus:outline-none bg-blue-500 hover:bg-blue-700 text-white px-4 h-10 text-sm rounded-md">
-    <span>Create App</span>
-</a></p>
-<p>Enter a name for your app, then press <strong>Create.</strong></p>
-<p>After you create your app, you&#x27;ll land on the <strong>General Overview page</strong> of the app&#x27;s settings where you can update basic information about your app like its description and icon. You&#x27;ll also see an <strong>Application ID</strong> and <strong>Interactions Endpoint URL</strong>, which we&#x27;ll use a bit later in the guide.</p>
-<doc-anchor-target id="configuring-your-bot">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#configuring-your-bot">#</doc-anchor-trigger>
-        <span>Configuring your bot</span>
-    </h3>
-</doc-anchor-target>
-<p><figure class="content-right">
-    <img src="../../static/bot-tabs.png" alt="bot tab" />
-    <figcaption class="caption caption-float">bot tab</figcaption>
-</figure>
-</p>
-<p>Next we&#x27;ll configure the bot user for your app, which allows it to appear and behave similarly to other server members.</p>
-<p>On the left hand sidebar click Bot.</p>
-<p>On this page, you can configure settings like its privileged intents or whether it can be installed by other users.
-<figure class="content-center">
-    <img src="../../static/public.png" class="w-full" alt="" />
-    <figcaption class="caption"></figcaption>
-</figure>
-<figure class="content-center">
-    <img src="../../static/intents.png" class="w-full" alt="" />
-    <figcaption class="caption"></figcaption>
-</figure>
-</p>
-<doc-panel id="what-are-intents" collapsed>
-    <template #title>What are intents?</template>
-<p>Intents determine which events Discord will send your app when you&#x27;re creating a Gateway API connection. For example, if you want your app to do something when users add a reaction to a message, you can pass the <code v-pre>GUILD_MESSAGE_REACTIONS</code> (<code v-pre>1 &lt;&lt; 10</code>) intent.</p>
-<p>Some intents are privileged, meaning they allow your app to access data that may be considered sensitive (like the contents of messages). Privileged intents appear and can be toggled on the Bot page in your app&#x27;s settings. Standard, non-privileged intents don&#x27;t require any additional permissions or configurations.</p>
-<p>More information about intents and a full list of available intents, along with their associated events, is in the <a href="https://discord.com/developers/docs/topics/gateway##gateway-intents">Gateway documentation</a>.</p>
-</doc-panel>
-<p>There&#x27;s also a <strong>Token</strong> section on the <strong>Bot</strong> page, which allows you to copy and reset your bot&#x27;s token.</p>
-<p>Bot tokens are used to authorize API requests and carry your bot user&#x27;s permissions, making them <span class="no-link inline-flex items-center justify-center font-medium leading-none whitespace-nowrap text-yellow-900 bg-yellow-100 h-6 px-2 text-xs rounded-md">
-    <span>highly sensitive</span>
-</span>. Make sure to never share your token or check it into any kind of version control.</p>
-<p>Go ahead and copy the token, and store the token somewhere safe (like in a password manager).</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p>You won&#x27;t be able to view your token again unless you regenerate it, so make sure to keep it somewhere safe.</p>
-        </div>
-    </div>
-</div>
-<doc-anchor-target id="adding-scopes-and-bot-permissions">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-scopes-and-bot-permissions">#</doc-anchor-trigger>
-        <span>Adding scopes and bot permissions</span>
-    </h3>
-</doc-anchor-target>
-<p>Apps need approval from installing users to perform actions in Discord (like creating a slash command or fetching a list of server members). Let&#x27;s select a few scopes and permissions to request before installing the app.</p>
-<doc-panel id="what-are-scopes-and-permissions" collapsed>
-    <template #title>What are scopes and permissions?</template>
-<p>When creating an app, scopes and permissions determine what your app can do and access in Discord servers.</p>
-<ul>
-<li>OAuth2 Scopes determine what data access and actions your app can take, granted on behalf of an installing or authenticating user.</li>
-<li>Permissions are the granular permissions for your bot user, the same as other users in Discord have. They can be approved by the installing user or later updated within server settings or with permission overwrites.</li>
-</ul>
-</doc-panel>
-<p><figure class="content-right">
-    <img src="../../static/oauth.png" alt="" />
-    <figcaption class="caption caption-float"></figcaption>
-</figure>
-Click on OAuth2 in the left sidebar, then select URL generator.</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p>The URL generator creates an installation link based on the scopes and permissions you select for your app. You can use the link to install the app onto your own server, or share it with others so they can install it.</p>
-        </div>
-    </div>
-</div>
-<br>
-<br>
-<br>
-For now, add two scopes:
-<ul>
-<li><code v-pre>applications.commands</code> which allows your app to create commands.</li>
-<li><code v-pre>bot</code> adds your bot user. After you select <code v-pre>bot</code>, you can also select different permissions for your bot. For now, just check Send Messages.
-See a list of all OAuth2 scopes, or read more on permissions in the documentation.</li>
-</ul>
-<p><figure class="content-center">
-    <img src="../../static/scope.png" alt="" />
-    <figcaption class="caption"></figcaption>
-</figure>
-</p>
-<doc-anchor-target id="installing-your-app">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#installing-your-app">#</doc-anchor-trigger>
-        <span>Installing your app</span>
-    </h3>
-</doc-anchor-target>
-<p>Once you add scopes, you should see a URL that you can copy to install your app.</p>
-<p><figure class="content-center">
-    <img src="../../static/url.png" alt="" />
-    <figcaption class="caption"></figcaption>
-</figure>
-</p>
-<p>After installing your app, you can head over to your server and see that it has joined <span class="docs-emoji">&#x2728;</span></p>
-<p>With your app configured and installed, you can start developing it.</p>
 <!-- Add content to _includes/bottom.md to include here -->
 
                                 
@@ -375,20 +242,20 @@ See a list of all OAuth2 scopes, or read more on permissions in the documentatio
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../setup/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/embeds/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Setup</span>
+                                                <span class="block mt-1">Embeds</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../setup/python/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/webrequests/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Python environment</span>
+                                                <span class="block mt-1">Webrequests</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -442,7 +309,7 @@ See a list of all OAuth2 scopes, or read more on permissions in the documentatio
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Discord Account", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Buttons", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 
     <!-- Add content to _includes/body.html to include here -->
 </body>

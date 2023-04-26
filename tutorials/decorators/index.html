@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/workshop">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735816182291">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735821908283">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -14,6 +14,7 @@
     <!-- Primary Meta Tags -->
     <title>Decorators - Create discord bots</title>
     <meta name="title" content="Decorators - Create discord bots">
+    <meta name="description" content="Decorators in Python are a design pattern that allows you to modify the functionality of a function by wrapping it in another function." />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://loomkoom.github.io/workshop/tutorials/decorators/" />
@@ -22,20 +23,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://loomkoom.github.io/workshop/tutorials/decorators/">
     <meta property="og:title" content="Decorators - Create discord bots">
+    <meta property="og:description" content="Decorators in Python are a design pattern that allows you to modify the functionality of a function by wrapping it in another function.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://loomkoom.github.io/workshop/tutorials/decorators/">
     <meta property="twitter:title" content="Decorators - Create discord bots">
+    <meta property="twitter:description" content="Decorators in Python are a design pattern that allows you to modify the functionality of a function by wrapping it in another function.">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.735816182291" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.735821908283" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735816182291" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735821908283" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735816182291" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735821908283" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735821908283" defer></script>
 
     <!-- Add content to _includes/head.html to include here -->
 </head>
@@ -232,6 +236,55 @@
         <span>Decorators</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="basic-use">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#basic-use">#</doc-anchor-trigger>
+        <span>Basic use</span>
+    </h2>
+</doc-anchor-target>
+<p>Decorators in Python are a design pattern that allows you to modify the functionality of a function by wrapping it in another function. In other words, a decorator is a function that takes another function and extends the behavior of the latter function without explicitly modifying it. The outer function is called the decorator, which takes the original function as an argument and returns a modified version of it.</p>
+<p>In the context of a Python Discord bot, decorators can be useful for modifying the behavior of functions that are called when specific events happen, such as when a message is received or when a user joins the server. For example, a decorator can be used to check if the user sending a message is authorized to use a specific command before allowing the command to execute.</p>
+<p>These decorators are used for different types of commands, permissions checking or modifiers.
+Examples of these decorators are as follows and work by adding them to any function.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-python"><code v-pre class="language-python">    @bot.event()
+    @bot.command()
+    @bot.command(aliases=[&quot;com1&quot;, &quot;com-1&quot;])
+    @bot.tree.command(name, description)
+    @bot.hybrid_command(name, description)
+    @tasks.loop(minutes=1.0)
+    @commands.cooldown(rate, seconds)
+    @commands.dm_only()
+    @commands.is_owner()
+    @commands.has_role()
+    @commands.dm_only()</code></pre>
+</doc-codeblock></div>
+<p>More can be found in the docs: <a href="https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=decorator#decorators">https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=decorator#decorators</a></p>
+<doc-anchor-target id="inner-workings">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inner-workings">#</doc-anchor-trigger>
+        <span>Inner workings</span>
+    </h2>
+</doc-anchor-target>
+<p>To go more in depth into decorators, there are a few important concepts related to Python functions that need to be understood. In Python, everything is an object, including functions. A function returns a value based on the given arguments. Functions in Python may also have side effects rather than just turning an input into an output. For example, the print() function is a basic example of a function that has a side effect of outputting something to the console.</p>
+<p>To create a decorator, a few building blocks are used. First, a function is defined that takes another function as an argument. Then, a new function is defined inside the first function that calls the original function and modifies its behavior in some way. Finally, the new function is returned. Here is an example of a decorator in action:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-python"><code v-pre class="language-python">def my_decorator(original_function):
+    def new_function():
+        print(&quot;Before the original function is called.&quot;)
+        original_function()
+        print(&quot;After the original function is called.&quot;)
+    return new_function
+
+@my_decorator
+def my_function():
+    print(&quot;Inside the original function.&quot;)
+
+my_function()</code></pre>
+</doc-codeblock></div>
+<p>When the <code v-pre>my_function()</code> is called, it is wrapped by the <code v-pre>my_decorator()</code> function, which modifies its behavior by printing &quot;Before the original function is called.&quot; before the original function is called and &quot;After the original function is called.&quot; after the original function is called.</p>
+<p>Decorators can be used for a variety of purposes, such as adding logging, testing performance, performing caching, verifying permissions, and more. Decorators can also be used to run the same code on multiple functions, which avoids writing duplicating code.</p>
+<p>In summary, decorators in Python are a powerful tool that allows programmers to modify the behavior of functions or classes without modifying the existing structure. They can be used in a variety of contexts, including Python Discord bots, to modify the behavior of functions that are called when specific events happen. However, it is important to understand how functions work in Python before diving into decorators. While decorators are a useful tool for wrapping code around defined blocks, debugging can become challenging when multiple decorators are used on a single function.</p>
 <!-- Add content to _includes/bottom.md to include here -->
 
                                 
@@ -240,6 +293,27 @@
                             </div>
                             <footer class="clear-both">
                             
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/event_driven/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Event driven</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/examples/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Examples</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
                             </footer>
                         </main>
                 
@@ -288,7 +362,7 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Decorators", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Decorators", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
 
     <!-- Add content to _includes/body.html to include here -->
 </body>

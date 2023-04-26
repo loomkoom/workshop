@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/workshop">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735816182291">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735821908283">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -14,6 +14,7 @@
     <!-- Primary Meta Tags -->
     <title>Async await - Create discord bots</title>
     <meta name="title" content="Async await - Create discord bots">
+    <meta name="description" content="What are those async def and await keywords actually doing? First You need to know what the difference between synchronous and asynchronous..." />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://loomkoom.github.io/workshop/tutorials/async_await/" />
@@ -22,20 +23,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://loomkoom.github.io/workshop/tutorials/async_await/">
     <meta property="og:title" content="Async await - Create discord bots">
+    <meta property="og:description" content="What are those async def and await keywords actually doing? First You need to know what the difference between synchronous and asynchronous...">
+    <meta property="og:image" content="https://loomkoom.github.io/workshop/static/async.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://loomkoom.github.io/workshop/tutorials/async_await/">
     <meta property="twitter:title" content="Async await - Create discord bots">
+    <meta property="twitter:description" content="What are those async def and await keywords actually doing? First You need to know what the difference between synchronous and asynchronous...">
+    <meta property="twitter:image" content="https://loomkoom.github.io/workshop/static/async.jpg">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.735816182291" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.735821908283" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735816182291" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735821908283" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735816182291" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735821908283" data-turbo-eval="false" defer></script>
 
     <!-- Add content to _includes/head.html to include here -->
 </head>
@@ -232,6 +237,23 @@
         <span>Async await</span>
     </h1>
 </doc-anchor-target>
+<p>What are those <code v-pre>async def</code> and <code v-pre>await</code> keywords actually doing?
+First You need to know what the difference between synchronous and asynchronous programming.</p>
+<p>Synchronous tasks happen in order, which means that you must finish task one before moving on to the next. Asynchronous tasks can be executed in any order or even simultaneously.</p>
+<p>Asynchronous programming, is non-blocking, so the execution of one task isn’t dependent on another. Tasks can run simultaneously and  operations can run in parallel.</p>
+<p>In synchronous programming, the program waits for a particular task to complete before moving on to the next task, whereas in asynchronous programming, the program continues executing other tasks without waiting for the completion of the previous task.
+<figure class="content-center">
+    <img src="../../static/async.jpg" alt="" />
+    <figcaption class="caption"></figcaption>
+</figure>
+</p>
+<p>Async/await is a way of writing asynchronous code that is easy to read and understand. It allows you to write asynchronous code that looks and behaves like synchronous code, making it easier to reason about and debug. In Python, async/await is used to create and pause coroutines, which are functions that can be paused and resumed at specific points in their execution. It&#x27;s especially useful in Discord bots, where you often need to perform multiple tasks at once, such as processing messages and sending responses simultaneously.</p>
+<p>To use async/await in Python, you need to define an async function using the <code v-pre>async def</code> syntax. Within the async function, you can use the <code v-pre>await</code> keyword to pause execution of the function until a coroutine is complete (this means the data you want is ready/computed). When the coroutine is complete, the value it returns is passed back to the calling function.
+<figure class="content-center">
+    <img src="../../static/async_await.jpg" alt="" />
+    <figcaption class="caption"></figcaption>
+</figure>
+</p>
 <!-- Add content to _includes/bottom.md to include here -->
 
                                 
@@ -240,6 +262,27 @@
                             </div>
                             <footer class="clear-both">
                             
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/basic_skeleton/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Basic skeleton</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/event_driven/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Event driven</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
                             </footer>
                         </main>
                 
