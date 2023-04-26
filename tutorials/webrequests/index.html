@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/workshop">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735829260055">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735830221767">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -14,7 +14,7 @@
     <!-- Primary Meta Tags -->
     <title>Webrequests - Create discord bots</title>
     <meta name="title" content="Webrequests - Create discord bots">
-    <meta name="description" content="Web requests are made through specific functions such as get(), request(), post(), etc." />
+    <meta name="description" content="Web requests are made through specific functions such as get() and post(). A GET request asks for data and a" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://loomkoom.github.io/workshop/tutorials/webrequests/" />
@@ -23,23 +23,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://loomkoom.github.io/workshop/tutorials/webrequests/">
     <meta property="og:title" content="Webrequests - Create discord bots">
-    <meta property="og:description" content="Web requests are made through specific functions such as get(), request(), post(), etc.">
+    <meta property="og:description" content="Web requests are made through specific functions such as get() and post(). A GET request asks for data and a">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://loomkoom.github.io/workshop/tutorials/webrequests/">
     <meta property="twitter:title" content="Webrequests - Create discord bots">
-    <meta property="twitter:description" content="Web requests are made through specific functions such as get(), request(), post(), etc.">
+    <meta property="twitter:description" content="Web requests are made through specific functions such as get() and post(). A GET request asks for data and a">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.735829260055" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.735830221767" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735829260055" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735830221767" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735829260055" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735829260055" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735830221767" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735830221767" defer></script>
 
     <!-- Add content to _includes/head.html to include here -->
 </head>
@@ -236,9 +236,8 @@
         <span>Webrequests</span>
     </h1>
 </doc-anchor-target>
-<p>Web requests are made through specific functions such as <code v-pre>get()</code>, <code v-pre>request()</code>, <code v-pre>post()</code>, etc., and the Python Requests module gives access to these functions. API keys are used to verify the program or application making the API call. There are different types of APIs, such as Web APIs or Web Service APIs, and REST API is a special type of Web API. There are different packages for making web requests, but <code v-pre>requests</code> is the most widely used.</p>
+<p>Web requests are made through specific functions such as <code v-pre>get()</code> and <code v-pre>post()</code>. A <code v-pre>GET</code> request asks for data and a <code v-pre>POST</code> request sends data. The Python Requests module gives access to these functions. API keys are used to verify the program or application making the API call. There are different types of APIs, such as Web APIs or Web Service APIs, and REST API is a special type of Web API. There are different packages for making web requests, but <code v-pre>requests</code> is the most widely used.</p>
 <p>To make a <code v-pre>GET</code> request using Python Requests, you can use the <code v-pre>get()</code> method with the website&#x27;s URL passed in. You can also print other attributes related to the response such as the status code. To limit the data returned by the request, you can add a query parameter in the request using a Python dictionary with the desired parameter as the key and the desired value as the value, and pass it to the <code v-pre>get()</code> method using the <code v-pre>params</code> parameter. The response will be returned in JSON format, which can be easily read using the <code v-pre>.json()</code> method.</p>
-<p>Roadblocks you can run into are headers, coockies or api keys that are needed to get access to a page.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-python"><code v-pre class="language-python">import requests
 
@@ -249,6 +248,10 @@ status = response.status_code
 # ...
 </code></pre>
 </doc-codeblock></div>
+<p>Roadblocks you can run into are headers, cookies or api keys that are needed to get access to a page.
+You can also get content from any webpage but then you have more work parsing the data you want.
+For that there&#x27;s a library called <a href="https://beautiful-soup-4.readthedocs.io/en/latest/">beautifulsoup</a> to find items in the HTML.</p>
+<p>If you can find an qpi that&#x27;s always easier. for example here is a list: <a href="https://apipheny.io/free-api/">https://apipheny.io/free-api/</a></p>
 <!-- Add content to _includes/bottom.md to include here -->
 
                                 
