@@ -85,4 +85,12 @@ async def serverinfo(interaction: discord.Interaction) -> None:
     
  ## Webrequests
     Voorbeelden webrequests
-        
+
+    ```py
+    @bot.tree.command()
+async def bitcoin(interaction : discord.Interaction):
+    url = 'https://api.coindesk.com/v1/bpi/currentprice/BTC.json'
+    response = requests.get(url)
+    data = response.json()
+    await interaction.response.send_message("Bitcoin price is: $" + data['bpi']['USD']['rate'])
+        ```

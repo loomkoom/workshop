@@ -3,7 +3,7 @@ order: 90
 ---
 
 What are those `async def` and `await` keywords actually doing?
-First You need to know what the difference between synchronous and asynchronous programming.
+First you need to know what the difference between synchronous and asynchronous programming.
 
 Synchronous tasks happen in order, which means that you must finish task one before moving on to the next. Asynchronous tasks can be executed in any order or even simultaneously.
 
