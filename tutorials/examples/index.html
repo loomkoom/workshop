@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/workshop">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735821908283">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735828359831">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -14,6 +14,7 @@
     <!-- Primary Meta Tags -->
     <title>Examples - Create discord bots</title>
     <meta name="title" content="Examples - Create discord bots">
+    <meta name="description" content="First a hello command that gives some very basic info:" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://loomkoom.github.io/workshop/tutorials/examples/" />
@@ -22,20 +23,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://loomkoom.github.io/workshop/tutorials/examples/">
     <meta property="og:title" content="Examples - Create discord bots">
+    <meta property="og:description" content="First a hello command that gives some very basic info:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://loomkoom.github.io/workshop/tutorials/examples/">
     <meta property="twitter:title" content="Examples - Create discord bots">
+    <meta property="twitter:description" content="First a hello command that gives some very basic info:">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/workshop/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.735821908283" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.735828359831" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735821908283" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.735828359831" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735821908283" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.735828359831" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.735828359831" defer></script>
 
     <!-- Add content to _includes/head.html to include here -->
 </head>
@@ -238,20 +242,73 @@
         <span>Prefix Command:</span>
     </h2>
 </doc-anchor-target>
+<p>First a hello command that gives some very basic info:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">    Hello (ctx.author / ctx.message / ctx.channel / ctx.guild)</code></pre>
+<pre class="language-python"><code v-pre class="language-python">@bot.command()
+async def Hello(ctx):
+    member = ctx.author
+    roles = []
+    for role in member.roles[1:]:
+        roles.append(role.name)
+    role_names = ', '.join(roles)
+    message = f&quot;Hello {member.name}! You are a {role_names} in this server.&quot;
+    await ctx.send(message)</code></pre>
 </doc-codeblock></div>
+<p>In this implementation, we define a function named Hello using the <code v-pre>@bot.command()</code> decorator. The function takes a single parameter named ctx, which represents the context of the message that triggered the command.</p>
+<ol>
+<li>Define the <code v-pre>Hello</code> command using the <code v-pre>@bot.command()</code> decorator, where bot is an instance of the <code v-pre>discord.Bot()</code> class or <code v-pre>discord.ext.commands.Bot()</code> class (for most use cases the same).</li>
+<li>In the function that implements the Hello command, use the ctx parameter to access the context of the message that triggered the command. The context contains information about the channel, server, and user who sent the message.</li>
+<li>Use the <code v-pre>ctx.author</code> attribute to get the <code v-pre>discord.Member</code> object that represents the user who sent the message. The <code v-pre>discord.Member</code> object contains information about the user&#x27;s roles, nickname, status, and more.</li>
+<li>(Use the <code v-pre>ctx.channel</code> attribute to get the <code v-pre>discord.TextChannel</code> object that represents the channel where the message was sent.)</li>
+<li>Use the await <code v-pre>ctx.send()</code> method to send a message to the channel where the command was triggered. You can use this method to format the message.</li>
+</ol>
 <doc-anchor-target id="slash-commands">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#slash-commands">#</doc-anchor-trigger>
         <span>Slash Commands:</span>
     </h2>
 </doc-anchor-target>
+<doc-anchor-target id="dice-roll">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dice-roll">#</doc-anchor-trigger>
+        <span>Dice roll</span>
+    </h3>
+</doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">    Dice roll
-    Nickname
-    Send text in another channel
-    Giveaway</code></pre>
+<pre class="language-python"><code v-pre class="language-python">@bot.tree.command(name=&quot;dice&quot;,description=&quot;A command to roll x number of dice&quot;)
+async def dice(interaction : discord.Interaction, amount : int =1):
+    rolls = []
+    for i in range range(0, int(amount):
+        rolls.append(random.randint(0, 6))
+    message = &quot;You rolled: &quot; + ', '.join(rolls) + '\n' +
+                &quot;Total sum is: &quot; + str(sum(rolls))
+    await interaction.response.send_message()</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="nickname">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#nickname">#</doc-anchor-trigger>
+        <span>Nickname</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-python"><code v-pre class="language-python">@bot.tree.command(name=&quot;nickname&quot;, description=&quot;change someone's nickname&quot;)
+@commands.has_guild_permissions(manage_nicknames=True)
+@commands.bot_has_guild_permissions(manage_nicknames=True)
+async def nickname(interaction: discord.Interaction, member: discord.Member, nickname: str):
+    await member.edit(nick=nickname)
+    await member.send(&quot;Your nickname has been changed!&quot;)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="send-message">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#send-message">#</doc-anchor-trigger>
+        <span>send message</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-python"><code v-pre class="language-python">@bot.tree.command(name=&quot;send&quot;, description=&quot;send message to specific channel&quot;)
+async def send_message(interaction: discord.Interaction, channel: discord.TextChannel, message: str):
+    await channel.send(message)
+    await interaction.response.send_message(&quot;Message sent!&quot;)</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="embeds">
     <h2>
@@ -259,8 +316,31 @@
         <span>Embeds</span>
     </h2>
 </doc-anchor-target>
+<p>Embeds are a way to display your messages in a nice way.
+You make a discord.embed Object and can set the various fields, these can be found in the docs:
+<a href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Embed">https://discordpy.readthedocs.io/en/latest/api.html#discord.Embed</a></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Voorbeeld waar alles in zit</code></pre>
+<pre class="language-python"><code v-pre class="language-python">@bot.tree.command(name=&quot;serverinfo&quot;, description=&quot;Get some useful (or not) information about the server.&quot;)
+async def serverinfo(interaction: discord.Interaction) -&gt; None:
+    roles = [f&quot;&lt;@&amp;{role.id}&gt;&quot; for role in interaction.guild.roles]
+    if len(roles) &gt; 50:
+        roles = roles[:50]
+        roles.append(f&quot;&gt;&gt;&gt;&gt; Displaying[50/{len(roles)}] Roles&quot;)
+    roles = &quot;, &quot;.join(roles)
+
+    embed = discord.Embed(
+        title=&quot;**Server Name:**&quot;, description=f&quot;{interaction.guild}&quot;, color=0x9C84EF
+    )
+    if interaction.guild.icon is not None:
+        embed.set_thumbnail(url=interaction.guild.icon.url)
+    embed.add_field(name=&quot;Server ID&quot;, value=interaction.guild.id)
+    embed.add_field(name=&quot;Member Count&quot;, value=interaction.guild.member_count)
+    embed.add_field(
+        name=&quot;Text/Voice Channels&quot;, value=f&quot;{len(interaction.guild.channels)}&quot;
+    )
+    embed.add_field(name=f&quot;Roles ({len(interaction.guild.roles)})&quot;, value=roles)
+    embed.set_footer(text=f&quot;Created at: {interaction.guild.created_at}&quot;)
+    await interaction.response.send_message(embed=embed)</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="button-selectmenu-dropdown">
     <h2>
@@ -358,7 +438,7 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Examples", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Examples", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
 
     <!-- Add content to _includes/body.html to include here -->
 </body>
